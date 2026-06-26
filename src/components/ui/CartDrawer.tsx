@@ -100,7 +100,7 @@ export default function CartDrawer() {
                     return (
                       <li key={item.productId} className="flex items-start gap-4 border-b border-charcoal-border pb-5">
                         <div className="flex h-16 w-12 shrink-0 items-center justify-center bg-charcoal">
-                          <MiniBottle />
+                          <img src={product.images[0]} alt={product.name} className="h-full w-full object-cover" />
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="flex items-start justify-between gap-2">

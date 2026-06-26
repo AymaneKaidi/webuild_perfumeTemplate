@@ -168,7 +168,9 @@ export default function BuyModal() {
                 <div className="mb-6 border-b border-charcoal-border pb-6">
                   {buyMode?.type === 'single' ? (
                     <div className="flex items-center gap-4">
-                      <div className="flex h-16 w-12 shrink-0 items-center justify-center bg-charcoal"><MiniBottle /></div>
+                      <div className="flex h-16 w-12 shrink-0 items-center justify-center bg-charcoal">
+                        <img src={buyMode.product.images[0]} alt={buyMode.product.name} className="h-full w-full object-cover" />
+                      </div>
                       <div>
                         <h2 className="font-display text-lg font-normal text-cream">{t(`products.${buyMode.product.id}.name`, { defaultValue: buyMode.product.name })}</h2>
                         <div className="mt-0.5 flex items-center gap-2">

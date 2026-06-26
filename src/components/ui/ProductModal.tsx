@@ -11,21 +11,7 @@ interface ProductModalProps {
   onClose: () => void
 }
 
-function BottlePlaceholder() {
-  const { t } = useTranslation()
-  return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-4">
-      <svg viewBox="0 0 80 120" className="h-32 w-20 opacity-20" xmlns="http://www.w3.org/2000/svg">
-        <rect x="32" y="0" width="16" height="8" rx="2" fill="#C9A96E" />
-        <rect x="28" y="8" width="24" height="6" rx="1" fill="#C9A96E" />
-        <path d="M28 14 Q14 28 14 38 L14 105 Q14 114 24 114 L56 114 Q66 114 66 105 L66 38 Q66 28 52 14 Z" fill="#C9A96E" opacity="0.15" />
-        <path d="M28 14 Q14 28 14 38 L14 105 Q14 114 24 114 L56 114 Q66 114 66 105 L66 38 Q66 28 52 14 Z" fill="none" stroke="#C9A96E" strokeWidth="1.5" opacity="0.4" />
-        <rect x="22" y="52" width="36" height="36" rx="1" fill="#C9A96E" opacity="0.08" />
-      </svg>
-      <span className="font-sans text-xs uppercase tracking-widest rtl:tracking-normal text-cream-muted opacity-40">{t('card.imageSoon')}</span>
-    </div>
-  )
-}
+
 
 function HeartIcon({ filled }: { filled: boolean }) {
   return (
@@ -90,7 +76,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
             {/* Left — Image */}
             <div className="relative flex aspect-[3/4] w-full shrink-0 items-center justify-center bg-charcoal md:w-2/5">
-              <BottlePlaceholder />
+              <img src={product.images[activeImageIndex]} alt={product.name} className="h-full w-full object-cover" />
               <span className="absolute start-4 top-4 border border-gold/30 bg-charcoal/60 px-2 py-0.5 font-sans text-[10px] uppercase tracking-[0.15em] rtl:tracking-normal rtl:text-[11px] rtl:font-medium text-gold backdrop-blur-sm">
                 {t(`filter.${product.genderTag}`)}
               </span>
