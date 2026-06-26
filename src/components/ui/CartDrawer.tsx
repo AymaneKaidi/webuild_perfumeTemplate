@@ -1,9 +1,10 @@
 import { useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
+import { useTranslation } from 'react-i18next'
 import { useCart } from '../../hooks/useCart'
 import useReducedMotion from '../../hooks/useReducedMotion'
-import { modalOverlay, drawerPanel, drawerPanelReduced } from '../../data/motion'
+import { modalOverlay, drawerPanel, drawerPanelRTL, drawerPanelReduced } from '../../data/motion'
 import rawProducts from '../../data/products.json'
 import type { Product } from '../../data/types'
 
@@ -23,7 +24,9 @@ function MiniBottle() {
 export default function CartDrawer() {
   const reduced = useReducedMotion()
   const { openDrawer, cartItems, removeFromCart, updateQuantity, openCartBuy, closeDrawer } = useCart()
+  const { t, i18n } = useTranslation()
   const isOpen = openDrawer === 'cart'
+  const dir = i18n.dir(i18n.language)
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') closeDrawer()
@@ -33,22 +36,20 @@ export default function CartDrawer() {
     if (!isOpen) return
     document.addEventListener('keydown', handleKeyDown)
     document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = ''
-    }
+    return () => { document.removeEventListener('keydown', handleKeyDown); document.body.style.overflow = '' }
   }, [isOpen, handleKeyDown])
 
   const totalItems = cartItems.reduce((s, i) => s + i.quantity, 0)
   const subtotal   = cartItems.reduce((s, i) => s + (productMap[i.productId]?.price ?? 0) * i.quantity, 0)
-  const panelVars  = reduced ? drawerPanelReduced : drawerPanel
+  // RTL: slide from left; LTR: slide from right (reduced: fade only)
+  const panelVars  = reduced ? drawerPanelReduced : (dir === 'rtl' ? drawerPanelRTL : drawerPanel)
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
           id="cart-drawer-overlay"
-          className="fixed inset-0 z-[120] flex justify-end"
+          className={`fixed inset-0 z-[120] flex ${dir === 'rtl' ? 'justify-start' : 'justify-end'}`}
           variants={modalOverlay}
           initial="hidden" animate="visible" exit="exit"
           transition={{ duration: 0.25 }}
@@ -58,7 +59,7 @@ export default function CartDrawer() {
 
           <motion.div
             id="cart-drawer-panel"
-            className="relative z-10 flex h-full w-full max-w-md flex-col border-l border-charcoal-border bg-charcoal-card"
+            className="relative z-10 flex h-full w-full max-w-md flex-col border-s border-charcoal-border bg-charcoal-card"
             variants={panelVars}
             initial="hidden" animate="visible" exit="exit"
             onClick={(e) => e.stopPropagation()}
@@ -66,10 +67,10 @@ export default function CartDrawer() {
             {/* Header */}
             <div className="flex items-center justify-between border-b border-charcoal-border px-6 py-5">
               <div>
-                <h2 className="font-display text-lg font-normal text-cream">Your Cart</h2>
+                <h2 className="font-display text-lg font-normal text-cream">{t('cart.title')}</h2>
                 {totalItems > 0 && (
                   <p className="mt-0.5 font-sans text-xs text-cream-muted">
-                    {totalItems} item{totalItems !== 1 ? 's' : ''}
+                    {t('cart.item', { count: totalItems })}
                   </p>
                 )}
               </div>
@@ -86,9 +87,9 @@ export default function CartDrawer() {
               {cartItems.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
                   <MiniBottle />
-                  <p className="font-sans text-sm text-cream-muted">Your cart is empty.</p>
+                  <p className="font-sans text-sm text-cream-muted">{t('cart.empty')}</p>
                   <Link to="/shop" onClick={closeDrawer} className="btn-gold text-xs" id="cart-empty-browse">
-                    Explore the Collection
+                    {t('cart.browse')}
                   </Link>
                 </div>
               ) : (
@@ -103,7 +104,7 @@ export default function CartDrawer() {
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="flex items-start justify-between gap-2">
-                            <p className="font-display text-sm font-normal leading-snug text-cream">{product.name}</p>
+                            <p className="font-display text-sm font-normal leading-snug text-cream">{t(`products.${product.id}.name`, { defaultValue: product.name })}</p>
                             <button aria-label={`Remove ${product.name}`}
                               onClick={() => removeFromCart(item.productId)}
                               className="shrink-0 text-cream-muted transition-colors hover:text-gold">
@@ -113,7 +114,6 @@ export default function CartDrawer() {
                             </button>
                           </div>
                           <div className="mt-2 flex items-center justify-between">
-                            {/* Quantity stepper */}
                             <div className="flex items-center border border-charcoal-border">
                               <button aria-label="Decrease quantity"
                                 onClick={() => updateQuantity(item.productId, item.quantity - 1)}
@@ -145,17 +145,17 @@ export default function CartDrawer() {
             {cartItems.length > 0 && (
               <div className="border-t border-charcoal-border px-6 py-5">
                 <div className="mb-5 flex items-center justify-between">
-                  <span className="font-sans text-xs uppercase tracking-[0.1em] text-cream-muted">Subtotal</span>
+                  <span className="font-sans text-xs uppercase tracking-[0.1em] text-cream-muted">{t('cart.subtotal')}</span>
                   <span className="font-sans text-lg font-medium text-gold">${subtotal}</span>
                 </div>
                 <button id="cart-proceed-to-buy"
                   onClick={() => { openCartBuy(); closeDrawer() }}
                   className="btn-gold-filled mb-3 w-full justify-center">
-                  Proceed to Buy
+                  {t('cart.proceedToBuy')}
                 </button>
                 <button onClick={closeDrawer}
                   className="w-full py-2 text-center font-sans text-xs text-cream-muted transition-colors hover:text-cream">
-                  Continue Shopping
+                  {t('cart.continueShopping')}
                 </button>
               </div>
             )}

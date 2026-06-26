@@ -1,0 +1,183 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "shop": "Boutique",
+    "about": "À Propos",
+    "contact": "Contact",
+    "wishlist": "Liste de Souhaits",
+    "cart": "Panier",
+    "openMenu": "Ouvrir le menu"
+  },
+  "hero": {
+    "established": "Fondé en 2018",
+    "headline": "Conçu pour les",
+    "headlineEm": "Connaisseurs",
+    "subheading": "Une maison de fragrances rares — où chaque note raconte une histoire et chaque flacon renferme un souvenir.",
+    "cta": "Explorer la Collection",
+    "scroll": "Défiler"
+  },
+  "featured": {
+    "eyebrow": "Parfums Signature",
+    "heading": "Collection Vedette",
+    "subheading": "Quatre fragrances qui définissent l'essence de Maison Aurel.",
+    "viewAll": "Voir Toutes les Fragrances"
+  },
+  "shop": {
+    "eyebrow": "La Maison",
+    "heading": "La Collection",
+    "subheading": "Douze fragrances composées à la main. Chacune avec sa propre histoire.",
+    "count_one": "{{count}} fragrance",
+    "count_other": "{{count}} fragrances"
+  },
+  "filter": {
+    "label": "Filtrer les fragrances",
+    "all": "Tout",
+    "men": "Hommes",
+    "women": "Femmes",
+    "unisex": "Unisexe"
+  },
+  "card": {
+    "addToCart": "Ajouter au Panier",
+    "added": "Ajouté ✓",
+    "imageSoon": "Image à venir"
+  },
+  "modal": {
+    "tagsLabel": "Notes",
+    "addToCart": "Ajouter au Panier",
+    "added": "Ajouté ✓",
+    "buyNow": "Acheter",
+    "close": "Fermer"
+  },
+  "cart": {
+    "title": "Votre Panier",
+    "item_one": "{{count}} article",
+    "item_other": "{{count}} articles",
+    "empty": "Votre panier est vide.",
+    "browse": "Parcourir la Collection",
+    "subtotal": "Sous-total",
+    "proceedToBuy": "Passer la Commande",
+    "continueShopping": "Continuer les Achats"
+  },
+  "wishlist": {
+    "title": "Liste de Souhaits",
+    "saved_one": "{{count}} fragrance sauvegardée",
+    "saved_other": "{{count}} fragrances sauvegardées",
+    "empty": "Aucune fragrance sauvegardée.",
+    "browse": "Parcourir la Collection",
+    "addToCart": "+ Ajouter au Panier",
+    "added": "Ajouté ✓",
+    "closeLabel": "Fermer la liste"
+  },
+  "buy": {
+    "cartSummary": "Récapitulatif du Panier",
+    "item_one": "{{count}} article",
+    "item_other": "{{count}} articles",
+    "total": "Total",
+    "fullName": "Nom Complet",
+    "fullNamePlaceholder": "Votre nom complet",
+    "phone": "Téléphone",
+    "phonePlaceholder": "+33 6 00 00 00 00",
+    "email": "E-mail",
+    "emailPlaceholder": "votre@email.com",
+    "language": "Langue préférée",
+    "address": "Adresse (optionnel)",
+    "addressPlaceholder": "Adresse de livraison",
+    "message": "Message (optionnel)",
+    "messagePlaceholder": "Demandes spéciales",
+    "errorFullName": "Le nom complet est requis",
+    "errorPhone": "Le numéro de téléphone est requis",
+    "errorEmail": "L'e-mail est requis",
+    "errorEmailInvalid": "Veuillez entrer une adresse e-mail valide",
+    "placeOrder": "Passer la Commande (Démo)",
+    "demoNote": "Démonstration — aucun paiement ne sera traité.",
+    "successTitle": "Merci, {{name}}",
+    "successSubtext": "Nous vous contacterons bientôt.",
+    "successDemoNote": "Démonstration uniquement — aucune commande passée",
+    "successClose": "Fermer",
+    "langEn": "English",
+    "langFr": "Français",
+    "langAr": "العربية"
+  },
+  "footer": {
+    "tagline": "Fragrances artisanales pour les esprits discrets. Chaque flacon, une histoire.",
+    "shopTitle": "Boutique",
+    "aboutTitle": "À Propos",
+    "contactTitle": "Contact",
+    "allFragrances": "Toutes les Fragrances",
+    "forHim": "Pour Lui",
+    "forHer": "Pour Elle",
+    "unisex": "Unisexe",
+    "ourStory": "Notre Histoire",
+    "ingredients": "Les Ingrédients",
+    "sustainability": "Durabilité",
+    "contactUs": "Nous Contacter",
+    "faq": "FAQ",
+    "stores": "Boutiques",
+    "copyright": "© {{year}} Maison Aurel. Tous droits réservés.",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "cookies": "Paramètres des Cookies"
+  },
+  "products": {
+    "p-001": {
+      "name": "Oud Noir",
+      "shortDescription": "Un oud sombre et résineux ancré par du cuir fumé et de l'ambre.",
+      "longDescription": "Oud Noir s'ouvre sur une présence majestueuse d'oud arabe sombre, révélant un cœur de cuir fumé et de vétiver..."
+    },
+    "p-002": {
+      "name": "Rose de Minuit",
+      "shortDescription": "Pétales de rose de minuit enveloppés de musc velouté et de patchouli sombre.",
+      "longDescription": "Rose de Minuit est une rose nocturne, loin des fleurs baignées de soleil de la journée..."
+    },
+    "p-003": {
+      "name": "Ambre Doré",
+      "shortDescription": "Ambre doré chaud fusionné avec de l'absolue de vanille et du bois de cèdre.",
+      "longDescription": "Ambre Doré est le parfum de la dernière lueur. L'ambre riche d'Oman se marie parfaitement avec l'absolue de vanille bourbon..."
+    },
+    "p-004": {
+      "name": "Jasmin Étoilé",
+      "shortDescription": "Jasmin sambac indolique avec bergamote et musc blanc.",
+      "longDescription": "Jasmin Étoilé capture l'intensité enivrante du jasmin sambac en pleine floraison sous un ciel étoilé..."
+    },
+    "p-005": {
+      "name": "Cèdre Blanc",
+      "shortDescription": "Cèdre blanc vif avec de la cardamome verte et du vétiver frais.",
+      "longDescription": "Cèdre Blanc est une étude de la masculinité propre. Il s'ouvre sur un éclat de cardamome verte..."
+    },
+    "p-006": {
+      "name": "Vétiver Impérial",
+      "shortDescription": "Vétiver d'Haïti avec un accord de rhum vieilli et une feuille de tabac sombre.",
+      "longDescription": "Vétiver Impérial n'est pas pour les âmes sensibles. Le vétiver d'Haïti — brut, fumé et profondément enraciné — est élevé par un accord de rhum vieilli..."
+    },
+    "p-007": {
+      "name": "Iris Sauvage",
+      "shortDescription": "Racine d'iris florentin poudré avec feuille de violette et bois frais.",
+      "longDescription": "Iris Sauvage commence par la signature froide et poudrée incomparable de la racine d'iris florentin..."
+    },
+    "p-008": {
+      "name": "Musc Sacré",
+      "shortDescription": "Un musc de peau superposé avec de l'iris, de l'ambrette et du cachemire.",
+      "longDescription": "Musc Sacré est une méditation sur la peau. Transparent et intime..."
+    },
+    "p-009": {
+      "name": "Bergamote Royale",
+      "shortDescription": "Bergamote et néroli éclairés par du poivre rose et de la mousse de chêne.",
+      "longDescription": "Bergamote Royale est un chypre hespéridé pour le gentleman moderne..."
+    },
+    "p-010": {
+      "name": "Fleur de Nuit",
+      "shortDescription": "Tubéreuse et fleur d'oranger sur une base de vanille noire.",
+      "longDescription": "Fleur de Nuit est une ode à la floraison nocturne. La tubéreuse — crémeuse, narcotique, magnifique — est associée à l'absolue de fleur d'oranger..."
+    },
+    "p-011": {
+      "name": "Encens Précieux",
+      "shortDescription": "Encens sacré avec myrrhe, ciste et bois de gaïac fumé.",
+      "longDescription": "Encens Précieux prend l'encens comme point de départ sacré — résineux, lumineux et ancien..."
+    },
+    "p-012": {
+      "name": "Santal Doré",
+      "shortDescription": "Bois de santal de Mysore réchauffé par de l'ambre doré et des épices douces.",
+      "longDescription": "Santal Doré rend hommage au légendaire bois de santal de Mysore — crémeux, chaud et discrètement opulent..."
+    }
+  }
+}

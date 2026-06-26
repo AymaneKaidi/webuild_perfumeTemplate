@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
+import { useTranslation } from 'react-i18next'
 import type { Product } from '../../data/types'
 import useReducedMotion from '../../hooks/useReducedMotion'
 import { useCart } from '../../hooks/useCart'
@@ -11,6 +12,7 @@ interface ProductCardProps {
 }
 
 function BottlePlaceholder() {
+  const { t } = useTranslation()
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-4">
       <svg viewBox="0 0 80 120" className="h-24 w-16 opacity-20" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +22,7 @@ function BottlePlaceholder() {
         <path d="M28 14 Q14 28 14 38 L14 105 Q14 114 24 114 L56 114 Q66 114 66 105 L66 38 Q66 28 52 14 Z" fill="none" stroke="#C9A96E" strokeWidth="1.5" opacity="0.4" />
         <rect x="22" y="52" width="36" height="36" rx="1" fill="#C9A96E" opacity="0.08" />
       </svg>
-      <span className="font-sans text-xs uppercase tracking-widest text-cream-muted opacity-40">Image coming soon</span>
+      <span className="font-sans text-xs uppercase tracking-widest rtl:tracking-normal text-cream-muted opacity-40">{t('card.imageSoon')}</span>
     </div>
   )
 }
@@ -37,9 +39,8 @@ function HeartIcon({ filled }: { filled: boolean }) {
 export default function ProductCard({ product, onCardClick }: ProductCardProps) {
   const reduced = useReducedMotion()
   const { wishlist, toggleWishlist, addToCart } = useCart()
+  const { t } = useTranslation()
   const wishlisted = wishlist.includes(product.id)
-
-  // "Added ✓" flash feedback
   const [justAdded, setJustAdded] = useState(false)
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -59,16 +60,17 @@ export default function ProductCard({ product, onCardClick }: ProductCardProps) 
       {/* Image area */}
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-charcoal">
         <BottlePlaceholder />
-        <span className="absolute left-3 top-3 border border-gold/30 bg-charcoal/60 px-2 py-0.5 font-sans text-[10px] uppercase tracking-[0.15em] text-gold backdrop-blur-sm">
-          {product.genderTag}
+        {/* Gender tag — logical start (flips in RTL) */}
+        <span className="absolute start-3 top-3 border border-gold/30 bg-charcoal/60 px-2 py-0.5 font-sans text-[10px] uppercase tracking-[0.15em] rtl:tracking-normal rtl:text-[11px] rtl:font-medium text-gold backdrop-blur-sm">
+          {t(`filter.${product.genderTag}`)}
         </span>
-        {/* Heart — global wishlist */}
+        {/* Heart — logical end (flips in RTL) */}
         <motion.button
           id={`wishlist-btn-${product.slug}`}
           aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
           onClick={(e) => { e.stopPropagation(); toggleWishlist(product.id) }}
           animate={wishlisted ? (reduced ? heartBounceReduced : heartBounce) : {}}
-          className={`absolute right-3 top-3 transition-colors ${wishlisted ? 'text-gold' : 'text-cream-muted hover:text-gold'}`}
+          className={`absolute end-3 top-3 transition-colors ${wishlisted ? 'text-gold' : 'text-cream-muted hover:text-gold'}`}
         >
           <HeartIcon filled={wishlisted} />
         </motion.button>
@@ -76,20 +78,19 @@ export default function ProductCard({ product, onCardClick }: ProductCardProps) 
 
       {/* Card body */}
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display mb-1 text-base font-normal leading-snug text-cream">{product.name}</h3>
-        <p className="mb-4 flex-1 font-sans text-xs leading-relaxed text-cream-muted line-clamp-2">{product.shortDescription}</p>
+        <h3 className="font-display mb-1 text-base font-normal leading-snug text-cream">{t(`products.${product.id}.name`, { defaultValue: product.name })}</h3>
+        <p className="mb-4 flex-1 font-sans text-xs leading-relaxed text-cream-muted line-clamp-2">{t(`products.${product.id}.shortDescription`, { defaultValue: product.shortDescription })}</p>
         <div className="mb-4">
           <span className="font-sans text-sm font-medium text-cream">
             {product.currency === 'USD' ? '$' : product.currency}{product.price}
           </span>
         </div>
-        {/* Add to Cart — context, with "Added ✓" flash */}
         <button
           id={`add-to-cart-btn-${product.slug}`}
           className={`btn-gold w-full justify-center text-xs transition-colors ${justAdded ? 'text-gold' : ''}`}
           onClick={handleAddToCart}
         >
-          {justAdded ? 'Added ✓' : 'Add to Cart'}
+          {justAdded ? t('card.added') : t('card.addToCart')}
         </button>
       </div>
     </motion.article>

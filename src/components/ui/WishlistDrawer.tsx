@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'motion/react'
+import { useTranslation } from 'react-i18next'
 import { useCart } from '../../hooks/useCart'
 import useReducedMotion from '../../hooks/useReducedMotion'
-import { modalOverlay, drawerPanel, drawerPanelReduced } from '../../data/motion'
+import { modalOverlay, drawerPanel, drawerPanelRTL, drawerPanelReduced } from '../../data/motion'
 import rawProducts from '../../data/products.json'
 import type { Product } from '../../data/types'
 
@@ -31,9 +32,10 @@ function HeartFilledIcon() {
 export default function WishlistDrawer() {
   const reduced = useReducedMotion()
   const { openDrawer, wishlist, toggleWishlist, addToCart, closeDrawer } = useCart()
+  const { t, i18n } = useTranslation()
   const isOpen = openDrawer === 'wishlist'
+  const dir = i18n.dir(i18n.language)
 
-  // Track "Added ✓" per product
   const [justAdded, setJustAdded] = useState<Set<string>>(new Set())
 
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -44,32 +46,25 @@ export default function WishlistDrawer() {
     if (!isOpen) return
     document.addEventListener('keydown', handleKeyDown)
     document.body.style.overflow = 'hidden'
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = ''
-    }
+    return () => { document.removeEventListener('keydown', handleKeyDown); document.body.style.overflow = '' }
   }, [isOpen, handleKeyDown])
 
   const handleAddToCart = (productId: string) => {
     addToCart(productId)
     setJustAdded((prev) => new Set(prev).add(productId))
     setTimeout(() => {
-      setJustAdded((prev) => {
-        const next = new Set(prev)
-        next.delete(productId)
-        return next
-      })
+      setJustAdded((prev) => { const next = new Set(prev); next.delete(productId); return next })
     }, 1000)
   }
 
-  const panelVars = reduced ? drawerPanelReduced : drawerPanel
+  const panelVars = reduced ? drawerPanelReduced : (dir === 'rtl' ? drawerPanelRTL : drawerPanel)
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
           id="wishlist-drawer-overlay"
-          className="fixed inset-0 z-[120] flex justify-end"
+          className={`fixed inset-0 z-[120] flex ${dir === 'rtl' ? 'justify-start' : 'justify-end'}`}
           variants={modalOverlay}
           initial="hidden" animate="visible" exit="exit"
           transition={{ duration: 0.25 }}
@@ -79,7 +74,7 @@ export default function WishlistDrawer() {
 
           <motion.div
             id="wishlist-drawer-panel"
-            className="relative z-10 flex h-full w-full max-w-md flex-col border-l border-charcoal-border bg-charcoal-card"
+            className="relative z-10 flex h-full w-full max-w-md flex-col border-s border-charcoal-border bg-charcoal-card"
             variants={panelVars}
             initial="hidden" animate="visible" exit="exit"
             onClick={(e) => e.stopPropagation()}
@@ -87,14 +82,14 @@ export default function WishlistDrawer() {
             {/* Header */}
             <div className="flex items-center justify-between border-b border-charcoal-border px-6 py-5">
               <div>
-                <h2 className="font-display text-lg font-normal text-cream">Wishlist</h2>
+                <h2 className="font-display text-lg font-normal text-cream">{t('wishlist.title')}</h2>
                 {wishlist.length > 0 && (
                   <p className="mt-0.5 font-sans text-xs text-cream-muted">
-                    {wishlist.length} saved fragrance{wishlist.length !== 1 ? 's' : ''}
+                    {t('wishlist.saved', { count: wishlist.length })}
                   </p>
                 )}
               </div>
-              <button id="wishlist-drawer-close" onClick={closeDrawer} aria-label="Close wishlist"
+              <button id="wishlist-drawer-close" onClick={closeDrawer} aria-label={t('wishlist.closeLabel')}
                 className="text-cream-muted transition-colors hover:text-gold">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -106,12 +101,10 @@ export default function WishlistDrawer() {
             <div className="flex-1 overflow-y-auto px-6 py-4" data-lenis-prevent>
               {wishlist.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
-                  <span className="text-cream-muted opacity-20">
-                    <HeartFilledIcon />
-                  </span>
-                  <p className="font-sans text-sm text-cream-muted">No saved fragrances yet.</p>
+                  <span className="text-cream-muted opacity-20"><HeartFilledIcon /></span>
+                  <p className="font-sans text-sm text-cream-muted">{t('wishlist.empty')}</p>
                   <Link to="/shop" onClick={closeDrawer} className="btn-gold text-xs" id="wishlist-empty-browse">
-                    Browse the Collection
+                    {t('wishlist.browse')}
                   </Link>
                 </div>
               ) : (
@@ -127,8 +120,7 @@ export default function WishlistDrawer() {
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="flex items-start justify-between gap-2">
-                            <p className="font-display text-sm font-normal leading-snug text-cream">{product.name}</p>
-                            {/* Remove from wishlist */}
+                            <p className="font-display text-sm font-normal leading-snug text-cream">{t(`products.${product.id}.name`, { defaultValue: product.name })}</p>
                             <button aria-label={`Remove ${product.name} from wishlist`}
                               onClick={() => toggleWishlist(productId)}
                               className="shrink-0 text-gold transition-colors hover:text-cream-muted">
@@ -136,16 +128,10 @@ export default function WishlistDrawer() {
                             </button>
                           </div>
                           <div className="mt-2 flex items-center justify-between gap-2">
-                            <span className="font-sans text-sm text-gold">
-                              ${product.price}
-                            </span>
-                            <button
-                              onClick={() => handleAddToCart(productId)}
-                              className={`font-sans text-xs uppercase tracking-[0.1em] transition-colors ${
-                                added ? 'text-gold' : 'text-cream-muted hover:text-gold'
-                              }`}
-                            >
-                              {added ? 'Added ✓' : '+ Add to Cart'}
+                            <span className="font-sans text-sm text-gold">${product.price}</span>
+                            <button onClick={() => handleAddToCart(productId)}
+                              className={`font-sans text-xs uppercase tracking-[0.1em] transition-colors ${added ? 'text-gold' : 'text-cream-muted hover:text-gold'}`}>
+                              {added ? t('wishlist.added') : t('wishlist.addToCart')}
                             </button>
                           </div>
                         </div>

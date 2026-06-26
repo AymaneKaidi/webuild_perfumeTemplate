@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import FilterBar from '../components/shop/FilterBar'
@@ -14,8 +15,8 @@ type FilterValue = 'all' | 'men' | 'women' | 'unisex'
 export default function ShopPage() {
   const [activeFilter, setActiveFilter] = useState<FilterValue>('all')
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const { t } = useTranslation()
 
-  // Ref passed to ProductGrid — useScrollReveal staggers the card children
   const gridRef = useRef<HTMLDivElement>(null)
   useScrollReveal(gridRef as React.RefObject<HTMLElement | null>, { stagger: 0.06, y: 20 })
 
@@ -33,13 +34,11 @@ export default function ShopPage() {
           <div className="container mx-auto px-6 text-center">
             <div className="mb-4 flex items-center justify-center gap-4">
               <span className="h-px w-12 bg-gold opacity-30" />
-              <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-gold opacity-60">The House</span>
+              <span className="font-sans text-[10px] uppercase tracking-[0.3em] rtl:tracking-normal rtl:text-[11px] rtl:font-medium text-gold opacity-60">{t('shop.eyebrow')}</span>
               <span className="h-px w-12 bg-gold opacity-30" />
             </div>
-            <h1 className="font-display text-4xl font-normal text-cream md:text-5xl">The Collection</h1>
-            <p className="mt-3 font-sans text-sm text-cream-muted">
-              Twelve hand-composed fragrances. Each with a story of its own.
-            </p>
+            <h1 className="font-display text-4xl font-normal text-cream md:text-5xl">{t('shop.heading')}</h1>
+            <p className="mt-3 font-sans text-sm text-cream-muted">{t('shop.subheading')}</p>
           </div>
         </section>
 
@@ -48,7 +47,7 @@ export default function ShopPage() {
           <div className="mb-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
             <FilterBar active={activeFilter} onChange={setActiveFilter} />
             <span className="font-sans text-xs text-cream-muted">
-              {filtered.length} fragrance{filtered.length !== 1 ? 's' : ''}
+              {t('shop.count', { count: filtered.length })}
             </span>
           </div>
           <ProductGrid

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
+import { useTranslation } from 'react-i18next'
 import type { Product } from '../../data/types'
 import useReducedMotion from '../../hooks/useReducedMotion'
 import { useCart } from '../../hooks/useCart'
@@ -11,6 +12,7 @@ interface ProductModalProps {
 }
 
 function BottlePlaceholder() {
+  const { t } = useTranslation()
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-4">
       <svg viewBox="0 0 80 120" className="h-32 w-20 opacity-20" xmlns="http://www.w3.org/2000/svg">
@@ -20,7 +22,7 @@ function BottlePlaceholder() {
         <path d="M28 14 Q14 28 14 38 L14 105 Q14 114 24 114 L56 114 Q66 114 66 105 L66 38 Q66 28 52 14 Z" fill="none" stroke="#C9A96E" strokeWidth="1.5" opacity="0.4" />
         <rect x="22" y="52" width="36" height="36" rx="1" fill="#C9A96E" opacity="0.08" />
       </svg>
-      <span className="font-sans text-xs uppercase tracking-widest text-cream-muted opacity-40">Image coming soon</span>
+      <span className="font-sans text-xs uppercase tracking-widest rtl:tracking-normal text-cream-muted opacity-40">{t('card.imageSoon')}</span>
     </div>
   )
 }
@@ -37,6 +39,7 @@ function HeartIcon({ filled }: { filled: boolean }) {
 export default function ProductModal({ product, onClose }: ProductModalProps) {
   const reduced = useReducedMotion()
   const { wishlist, toggleWishlist, addToCart, openBuyNow } = useCart()
+  const { t } = useTranslation()
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [justAdded, setJustAdded] = useState(false)
 
@@ -78,9 +81,8 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
             variants={panelVars} initial="hidden" animate="visible" exit="exit"
             onClick={(e) => e.stopPropagation()}>
 
-            {/* Close */}
-            <button id="modal-close-btn" onClick={onClose} aria-label="Close modal"
-              className="absolute right-4 top-4 z-20 text-cream-muted transition-colors hover:text-gold">
+            <button id="modal-close-btn" onClick={onClose} aria-label={t('modal.close')}
+              className="absolute end-4 top-4 z-20 text-cream-muted transition-colors hover:text-gold">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -89,8 +91,8 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
             {/* Left — Image */}
             <div className="relative flex aspect-[3/4] w-full shrink-0 items-center justify-center bg-charcoal md:w-2/5">
               <BottlePlaceholder />
-              <span className="absolute left-4 top-4 border border-gold/30 bg-charcoal/60 px-2 py-0.5 font-sans text-[10px] uppercase tracking-[0.15em] text-gold backdrop-blur-sm">
-                {product.genderTag}
+              <span className="absolute start-4 top-4 border border-gold/30 bg-charcoal/60 px-2 py-0.5 font-sans text-[10px] uppercase tracking-[0.15em] rtl:tracking-normal rtl:text-[11px] rtl:font-medium text-gold backdrop-blur-sm">
+                {t(`filter.${product.genderTag}`)}
               </span>
               {product.images.length > 1 && (
                 <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
@@ -104,7 +106,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
             {/* Right — Details */}
             <div className="flex flex-1 flex-col overflow-y-auto p-6 md:p-8">
-              <h2 className="font-display text-2xl font-normal text-cream md:text-3xl">{product.name}</h2>
+              <h2 className="font-display text-2xl font-normal text-cream md:text-3xl">{t(`products.${product.id}.name`, { defaultValue: product.name })}</h2>
               <p className="mt-2 font-sans text-lg font-medium text-gold">
                 {product.currency === 'USD' ? '$' : product.currency}{product.price}
               </p>
@@ -113,16 +115,16 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                 <span className="h-1 w-1 rotate-45 bg-gold opacity-30" />
                 <span className="h-px flex-1 bg-charcoal-border" />
               </div>
-              <p className="flex-1 font-sans text-sm leading-relaxed text-cream-muted">{product.longDescription}</p>
+              <p className="flex-1 font-sans text-sm leading-relaxed text-cream-muted">{t(`products.${product.id}.longDescription`, { defaultValue: product.longDescription })}</p>
               <div className="mt-6 flex flex-wrap gap-2">
+                <span className="px-3 py-1 font-sans text-[10px] uppercase tracking-[0.1em] rtl:tracking-normal rtl:text-[11px] rtl:font-medium text-cream-muted">{t('modal.tagsLabel')}:</span>
                 {product.tags.map((tag) => (
-                  <span key={tag} className="border border-charcoal-border px-3 py-1 font-sans text-[10px] uppercase tracking-[0.1em] text-cream-muted">{tag}</span>
+                  <span key={tag} className="border border-charcoal-border px-3 py-1 font-sans text-[10px] uppercase tracking-[0.1em] rtl:tracking-normal rtl:text-[11px] rtl:font-medium text-cream-muted">{tag}</span>
                 ))}
               </div>
 
-              {/* Actions: Heart | Add to Cart | Buy Now */}
+              {/* Actions */}
               <div className="mt-8 flex items-center gap-3">
-                {/* Heart — global wishlist */}
                 <motion.button
                   id={`modal-wishlist-btn-${product.slug}`}
                   aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
@@ -133,19 +135,15 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                   }`}>
                   <HeartIcon filled={wishlisted} />
                 </motion.button>
-
-                {/* Add to Cart */}
                 <button id={`modal-add-to-cart-${product.slug}`}
                   className="btn-gold flex-1 justify-center"
                   onClick={handleAddToCart}>
-                  {justAdded ? 'Added ✓' : 'Add to Cart'}
+                  {justAdded ? t('modal.added') : t('modal.addToCart')}
                 </button>
-
-                {/* Buy Now — express checkout, bypasses cart */}
                 <button id={`modal-buy-now-${product.slug}`}
                   className="btn-gold-filled flex-1 justify-center"
                   onClick={() => { onClose(); openBuyNow(product) }}>
-                  Buy Now
+                  {t('modal.buyNow')}
                 </button>
               </div>
             </div>

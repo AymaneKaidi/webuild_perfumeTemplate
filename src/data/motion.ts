@@ -79,6 +79,13 @@ export const drawerPanel: Variants = {
   exit:    { x: '100%', opacity: 0, transition: { duration: 0.25, ease: luxuryEase } },
 }
 
+// RTL variant: drawer slides in from the left (Arabic layout)
+export const drawerPanelRTL: Variants = {
+  hidden:  { x: '-100%', opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: { duration: 0.35, ease: luxuryEase } },
+  exit:    { x: '-100%', opacity: 0, transition: { duration: 0.25, ease: luxuryEase } },
+}
+
 export const drawerPanelReduced: Variants = {
   hidden:  { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.2 } },

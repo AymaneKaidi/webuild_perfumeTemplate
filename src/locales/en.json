@@ -1,0 +1,183 @@
+{
+  "nav": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About",
+    "contact": "Contact",
+    "wishlist": "Wishlist",
+    "cart": "Shopping bag",
+    "openMenu": "Open menu"
+  },
+  "hero": {
+    "established": "Established 2018",
+    "headline": "Crafted for the",
+    "headlineEm": "Discerning",
+    "subheading": "A curated house of rare fragrances — where every note tells a story and every bottle holds a memory.",
+    "cta": "Explore the Collection",
+    "scroll": "Scroll"
+  },
+  "featured": {
+    "eyebrow": "Signature Scents",
+    "heading": "Featured Collection",
+    "subheading": "Four fragrances that define the essence of Maison Aurel.",
+    "viewAll": "View All Fragrances"
+  },
+  "shop": {
+    "eyebrow": "The House",
+    "heading": "The Collection",
+    "subheading": "Twelve hand-composed fragrances. Each with a story of its own.",
+    "count_one": "{{count}} fragrance",
+    "count_other": "{{count}} fragrances"
+  },
+  "filter": {
+    "label": "Filter fragrances",
+    "all": "All",
+    "men": "Men",
+    "women": "Women",
+    "unisex": "Unisex"
+  },
+  "card": {
+    "addToCart": "Add to Cart",
+    "added": "Added ✓",
+    "imageSoon": "Image coming soon"
+  },
+  "modal": {
+    "tagsLabel": "Notes",
+    "addToCart": "Add to Cart",
+    "added": "Added ✓",
+    "buyNow": "Buy Now",
+    "close": "Close"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "item_one": "{{count}} item",
+    "item_other": "{{count}} items",
+    "empty": "Your cart is empty.",
+    "browse": "Browse the Collection",
+    "subtotal": "Subtotal",
+    "proceedToBuy": "Proceed to Buy",
+    "continueShopping": "Continue Shopping"
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "saved_one": "{{count}} saved fragrance",
+    "saved_other": "{{count}} saved fragrances",
+    "empty": "No saved fragrances yet.",
+    "browse": "Browse the Collection",
+    "addToCart": "+ Add to Cart",
+    "added": "Added ✓",
+    "closeLabel": "Close wishlist"
+  },
+  "buy": {
+    "cartSummary": "Cart Summary",
+    "item_one": "{{count}} item",
+    "item_other": "{{count}} items",
+    "total": "Total",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Your full name",
+    "phone": "Phone",
+    "phonePlaceholder": "+1 (555) 000-0000",
+    "email": "Email",
+    "emailPlaceholder": "your@email.com",
+    "language": "Language Preference",
+    "address": "Address (optional)",
+    "addressPlaceholder": "Shipping address",
+    "message": "Message (optional)",
+    "messagePlaceholder": "Any special requests",
+    "errorFullName": "Full name is required",
+    "errorPhone": "Phone number is required",
+    "errorEmail": "Email is required",
+    "errorEmailInvalid": "Please enter a valid email address",
+    "placeOrder": "Place Order (Demo)",
+    "demoNote": "This is a demo — no payment will be processed.",
+    "successTitle": "Thank you, {{name}}",
+    "successSubtext": "We'll be in touch shortly.",
+    "successDemoNote": "Demo only — no order was placed",
+    "successClose": "Close",
+    "langEn": "English",
+    "langFr": "Français",
+    "langAr": "العربية"
+  },
+  "footer": {
+    "tagline": "Handcrafted fragrances for the quietly discerning. Each bottle, a story.",
+    "shopTitle": "Shop",
+    "aboutTitle": "About",
+    "contactTitle": "Contact",
+    "allFragrances": "All Fragrances",
+    "forHim": "For Him",
+    "forHer": "For Her",
+    "unisex": "Unisex",
+    "ourStory": "Our Story",
+    "ingredients": "The Ingredients",
+    "sustainability": "Sustainability",
+    "contactUs": "Contact Us",
+    "faq": "FAQ",
+    "stores": "Stores",
+    "copyright": "© {{year}} Maison Aurel. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "cookies": "Cookie Settings"
+  },
+  "products": {
+    "p-001": {
+      "name": "Oud Noir",
+      "shortDescription": "A dark, resinous oud anchored by smoked leather and amber.",
+      "longDescription": "Oud Noir opens with a commanding presence of dark Arabian oud, gradually revealing a heart of smoked leather and vetiver before settling into a warm amber and musk base. A fragrance of authority and quiet intensity — made for those who leave a room without raising their voice."
+    },
+    "p-002": {
+      "name": "Rose de Minuit",
+      "shortDescription": "Midnight rose petals wrapped in velvet musk and dark patchouli.",
+      "longDescription": "Rose de Minuit is a nocturnal rose — far removed from the sun-drenched florals of the day. Dew-kissed rose petals bloom over a shadowed heart of saffron and iris, settling into a base of dark patchouli, sandalwood, and warm musk. Seductive and deeply feminine."
+    },
+    "p-003": {
+      "name": "Ambre Doré",
+      "shortDescription": "Warm golden amber fused with vanilla absolute and cedarwood.",
+      "longDescription": "Ambre Doré is the scent of last light. Rich Omani amber blends seamlessly with bourbon vanilla absolute and the dry warmth of Atlas cedarwood, leaving a trail that lingers long after you've left the room. Comforting, luxurious, and timeless — suitable for any season."
+    },
+    "p-004": {
+      "name": "Jasmin Étoilé",
+      "shortDescription": "Indolic jasmine sambac with bergamot and white musk.",
+      "longDescription": "Jasmin Étoilé captures the intoxicating intensity of jasmine sambac in full bloom under a starlit sky. A radiant bergamot opening gives way to the heady floral heart, before white musk and blonde woods soften it into an intimate, skin-close finish. Luminous and unforgettable."
+    },
+    "p-005": {
+      "name": "Cèdre Blanc",
+      "shortDescription": "Crisp white cedar with green cardamom and cool vetiver.",
+      "longDescription": "Cèdre Blanc is a study in clean masculinity. It opens with a snap of green cardamom and lemon zest, pivoting to a cool, clean cedarwood heart that is fresh yet substantial. Vetiver and white musks carry it to a near-transparent dry-down — effortlessly refined."
+    },
+    "p-006": {
+      "name": "Vétiver Impérial",
+      "shortDescription": "Haitian vetiver with aged rum accord and dark tobacco leaf.",
+      "longDescription": "Vétiver Impérial is not for the faint-hearted. Haitian vetiver — raw, smoky, and deeply rooted — is elevated by an aged rum accord and a whisper of dark tobacco leaf. The base reveals a complex sandalwood and labdanum that adds gravitas and warmth. Bold, lasting, and unmistakably masculine."
+    },
+    "p-007": {
+      "name": "Iris Sauvage",
+      "shortDescription": "Powdery Florentine iris root with violet leaf and cool woods.",
+      "longDescription": "Iris Sauvage begins with the unmistakable cool, powdery signature of Florentine iris root — carrot-like, crystalline, and rare. Violet leaf adds a fleeting green freshness, while blonde sandalwood and ambrette seed round the composition into something deeply wearable and sophisticated."
+    },
+    "p-008": {
+      "name": "Musc Sacré",
+      "shortDescription": "A skin-scent musk layered with orris, ambrette, and cashmere.",
+      "longDescription": "Musc Sacré is a meditation on skin. Transparent and intimate, it layers the softest white musk with orris butter, ambrette seed, and a whisper of cashmere wood. It smells like nothing else and yet like everything familiar — the perfect base for layering or a complete statement worn alone."
+    },
+    "p-009": {
+      "name": "Bergamote Royale",
+      "shortDescription": "Bergamot and neroli brightened by pink pepper and oakmoss.",
+      "longDescription": "Bergamote Royale is a citrus chypre for the modern gentleman. Calabrian bergamot and neroli open with effortless brightness, grounded by pink pepper and a classical oakmoss and vetiver base. Crisp for the morning, sophisticated for the afternoon — an impeccable everyday signature."
+    },
+    "p-010": {
+      "name": "Fleur de Nuit",
+      "shortDescription": "Tuberose and orange blossom over a base of black vanilla.",
+      "longDescription": "Fleur de Nuit is an ode to nocturnal blooming. Tuberose — creamy, narcotic, magnificent — is paired with orange blossom absolute and a touch of ylang ylang. The base of black vanilla, labdanum, and soft musks anchors the composition, giving it an addictive sweetness that stops just short of excess."
+    },
+    "p-011": {
+      "name": "Encens Précieux",
+      "shortDescription": "Sacred frankincense with myrrh, cistus, and smoky guaiac wood.",
+      "longDescription": "Encens Précieux takes frankincense as its sacred starting point — resinous, luminous, and ancient. Ethiopian olibanum gives way to a heart of myrrh and cistus, their balsamic warmth deepened by guaiac wood smoke. This is a fragrance with ceremony — meditative, unhurried, and profoundly beautiful."
+    },
+    "p-012": {
+      "name": "Santal Doré",
+      "shortDescription": "Mysore sandalwood warmed by golden amber and soft spices.",
+      "longDescription": "Santal Doré pays homage to the legendary sandalwood of Mysore — creamy, warm, and quietly opulent. A top note of cardamom and soft pink pepper eases you in, revealing a pure sandalwood heart that is then draped in golden amber and a whisper of benzoin. Rich without heaviness — a fragrance of quiet confidence."
+    }
+  }
+}
