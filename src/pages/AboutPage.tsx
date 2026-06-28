@@ -24,8 +24,8 @@ const LeafIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold"><path d="M11 20A7 7 0 0 1 14 6h7v7a7 7 0 0 1-7 7h-3Z"/><path d="M14 6v6a3 3 0 0 1-3 3h-4"/></svg>
 )
 
-const RecycleIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold"><path d="M7 15.3 2.3 11 7 6.7"/><path d="m17 8.7 4.7 4.3-4.7 4.3"/><path d="M2.3 11h14.4c1.8 0 3.3 1.5 3.3 3.3 0 1.8-1.5 3.3-3.3 3.3H11"/></svg>
+const PackageIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-gold"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><polyline points="12 22 12 12"/></svg>
 )
 
 const GlobeIcon = () => (
@@ -121,7 +121,7 @@ export default function AboutPage() {
             <div ref={ingredientsRef} className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {/* Oud */}
               <article className="group flex flex-col overflow-hidden border border-charcoal-border bg-charcoal-card p-0 transition-colors hover:border-gold/40">
-                <div className="aspect-[3/2] w-full overflow-hidden">
+                <div className="aspect-[4/5] w-full overflow-hidden">
                   <img
                     src="/images/products/oud-noir-1.png"
                     alt={t('about.ing1Name')}
@@ -136,7 +136,7 @@ export default function AboutPage() {
               </article>
               {/* Rose */}
               <article className="group flex flex-col overflow-hidden border border-charcoal-border bg-charcoal-card p-0 transition-colors hover:border-gold/40">
-                <div className="aspect-[3/2] w-full overflow-hidden">
+                <div className="aspect-[4/5] w-full overflow-hidden">
                   <img
                     src="/images/products/rose-de-minuit-1.png"
                     alt={t('about.ing2Name')}
@@ -151,7 +151,7 @@ export default function AboutPage() {
               </article>
               {/* Amber */}
               <article className="group flex flex-col overflow-hidden border border-charcoal-border bg-charcoal-card p-0 transition-colors hover:border-gold/40">
-                <div className="aspect-[3/2] w-full overflow-hidden">
+                <div className="aspect-[4/5] w-full overflow-hidden">
                   <img
                     src="/images/products/ambre-dore-1.png"
                     alt={t('about.ing3Name')}
@@ -179,7 +179,7 @@ export default function AboutPage() {
             <div ref={sustainabilityRef} className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
               {[
                 { icon: <LeafIcon />, titleKey: 'about.sus1Title', descKey: 'about.sus1Desc' },
-                { icon: <RecycleIcon />, titleKey: 'about.sus2Title', descKey: 'about.sus2Desc' },
+                { icon: <PackageIcon />, titleKey: 'about.sus2Title', descKey: 'about.sus2Desc' },
                 { icon: <GlobeIcon />, titleKey: 'about.sus3Title', descKey: 'about.sus3Desc' },
               ].map(({ icon, titleKey, descKey }) => (
                 <div key={titleKey} className="border border-charcoal-border p-8 text-center">
